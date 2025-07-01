@@ -1297,13 +1297,20 @@
     <option value="">-- Select --</option>
     <option value="DJ">DJ</option>
     <option value="EO">EO</option>
-    <option value="GM FREELANCE">GM FREELANCE</option>
+    <option value="GM">GM</option>
+    <option value="FREELANCE">FREELANCE</option>
+    <option value="VENDOR">VENDOR</option>
     <option value="OTHERS">OTHERS</option>
   </select>
 
   <label for="subject" style="color:#ccc; font-weight:bold;">Subject *</label>
-  <input type="text" id="subject" name="subject" placeholder="Subject" required
+  <select id="subject" name="subject" required
     style="width:100%; padding:12px; margin-bottom:20px; background:#2a2a2a; border:1px solid #444; border-radius:6px; color:#fff; font-size:14px;">
+    <option value="">-- Select --</option>
+    <option value="Register Member">Register Member</option>
+    <option value="Ordering">Ordering</option>
+    <option value="Showroom Booking">Showroom Booking</option>
+  </select>
 
   <label for="message" style="color:#ccc; font-weight:bold;">Your Message *</label>
   <textarea id="message" name="message" placeholder="Type your message here..." rows="6" required
