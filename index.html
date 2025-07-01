@@ -39,7 +39,7 @@
         font-family: "Inter", sans-serif;
         background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
           url("https://images.unsplash.com/photo-1501612780327-45045538702b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80")
-            no-repeat center center/cover;
+            no-repeat center center/cover fixed;
         color: var(--text);
         line-height: 1.6;
         overflow-x: hidden;
@@ -156,30 +156,29 @@
 
       /* Hero Section */
       #home {
-        min-height: calc(100vh - 80px);
+        height: 100vh;
         display: flex;
         align-items: center;
-        padding-top: 100px;
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+          url("https://images.unsplash.com/photo-1501612780327-45045538702b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80")
+            no-repeat center center/cover fixed;
         text-align: center;
-      }
-
-      .hero-content {
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 40px 20px;
+        padding-top: 100px; /* Adjusted padding to prevent title overlap */
       }
 
       .hero-content h1 {
         font-size: 3.5rem;
-        margin-bottom: 30px;
+        margin-bottom: 1.5rem;
         text-shadow: 0 0 15px rgba(251, 96, 0, 0.5);
-        line-height: 1.2;
+        text-align: center;
+        padding-top: 40px; /* Added padding to create space below header */
       }
 
       .hero-content p {
         font-size: 1.2rem;
         max-width: 800px;
-        margin: 0 auto 40px;
+        margin: 0 auto 2rem;
+        text-align: center;
       }
 
       /* Quick Navigation - Hidden on desktop, visible on mobile */
@@ -229,7 +228,7 @@
 
       /* Video Section */
       #videos {
-        padding: 100px 0;
+        padding: 80px 0;
         background-color: var(--dark);
       }
 
@@ -237,35 +236,33 @@
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         gap: 30px;
-        margin-top: 30px;
+        margin-top: 40px;
       }
 
-      .video-item {
+      .video-card {
         background: var(--gray);
         border-radius: 10px;
         overflow: hidden;
         transition: var(--transition);
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         filter: grayscale(30%) brightness(0.9);
+        border: 2px solid var(--primary);
       }
 
-      .video-item:hover {
+      .video-card:hover {
         transform: translateY(-10px);
         box-shadow: 0 15px 30px rgba(251, 96, 0, 0.2);
         filter: grayscale(0%) brightness(1.1);
       }
 
-      .video-item h3 {
-        margin: 15px 0;
-        font-size: 1.3rem;
-        text-align: center;
-        padding: 0 15px;
-      }
-
-      .video-item iframe {
+      .video-card iframe {
         width: 100%;
         height: 200px;
         border: none;
+      }
+
+      .video-info {
+        padding: 20px;
       }
 
       /* Reviews Section */
@@ -510,6 +507,59 @@
           url("https://images.unsplash.com/photo-1501612780327-45045538702b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
       }
 
+      /* Responsive */
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .hamburger {
+          display: block;
+        }
+
+        .hero-content h1 {
+          font-size: 2.5rem;
+          padding-top: 20px; /* Adjusted for mobile */
+        }
+
+        .hero-content p {
+          font-size: 1rem;
+        }
+
+        /* Show quick nav and social icons on mobile */
+        .quick-nav {
+          display: flex;
+          gap: 10px;
+        }
+
+        .quick-nav a {
+          padding: 8px 15px;
+          font-size: 1rem;
+        }
+
+        .social-icons {
+          display: flex;
+        }
+
+        .video-grid,
+        .review-grid {
+          grid-template-columns: 1fr;
+        }
+
+        /* Ensure full width on mobile */
+        body, header, .container {
+          width: 100%;
+          max-width: 100%;
+          overflow-x: hidden;
+        }
+
+        /* Center background on mobile */
+        #home, .hero-section {
+          background-position: center center;
+          background-attachment: scroll;
+        }
+      }
+
       /* Animations */
       @keyframes fadeIn {
         from {
@@ -547,45 +597,6 @@
       .page.active {
         display: block;
         opacity: 1;
-      }
-
-      /* Responsive */
-      @media (max-width: 768px) {
-        .nav-links {
-          display: none;
-        }
-
-        .hamburger {
-          display: block;
-        }
-
-        .hero-content h1 {
-          font-size: 2.5rem;
-        }
-
-        .hero-content p {
-          font-size: 1rem;
-        }
-
-        /* Show quick nav and social icons on mobile */
-        .quick-nav {
-          display: flex;
-          gap: 10px;
-        }
-
-        .quick-nav a {
-          padding: 8px 15px;
-          font-size: 1rem;
-        }
-
-        .social-icons {
-          display: flex;
-        }
-
-        .video-grid,
-        .review-grid {
-          grid-template-columns: 1fr;
-        }
       }
     </style>
   </head>
@@ -635,7 +646,8 @@
       <section class="hero-section lazy-background" id="hero-section">
         <div class="container">
           <div class="hero-content animate">
-            <h1>BUILT FOR THE FUTURE, MADE FOR MEMBERS</h1>
+            <p>
+            <h1> BUILT FOR THE FUTURE, MADE FOR MEMBERS</h1>
             <p>
               Becoming a registered member of Polar Audio Solutions isn't just
               about stepping into a workflow built on trust, clarity, and long
@@ -655,122 +667,193 @@
     </div>
 
     <div class="page" id="videos-page">
-      <section id="videos">
+      <section id="our-work" class="animated-element">
         <div class="container">
-          <h2 class="animate">OUR WORK AND PRODUCT IN ACTION</h2>
-          <p class="animate delay-1">Experience our premium audio, lighting, and visual solutions through these showcases</p>
-          
-          <div class="video-grid">
-            <!-- Product Showcase -->
-            <div class="video-item animated-element">
-              <h3>HYPER X System</h3>
-              <iframe 
-                class="lazy" 
-                data-src="https://drive.google.com/file/d/1ut2jxQwP5l1RfCGuCiVgh4OeEF9jrfbd/preview" 
-                loading="lazy"
-                title="HYPER X System"
-              ></iframe>
+          <h2>OUR WORK AND PRODUCT IN ACTION</h2>
+          <p>Check out some of our recent projects and events showcasing our premium audio, lighting, and visual solutions in Bali.</p>
+          <div class="video-container">
+            <div class="video-grid">
+              <!-- Product Showcase -->
+              <div class="video-card animated-element">
+                <iframe 
+                  class="lazy" 
+                  data-src="https://drive.google.com/file/d/1ut2jxQwP5l1RfCGuCiVgh4OeEF9jrfbd/preview" 
+                  loading="lazy"
+                  title="HYPER X System"
+                ></iframe>
+                <div class="video-info">
+                  <h3>HYPER X System</h3>
+                </div>
+              </div>
+              <div class="video-card animated-element">
+                <iframe 
+                  class="lazy" 
+                  data-src="https://drive.google.com/file/d/1ATBBPWADBb1B5JtqSZq05dyFhocWLRGD/preview" 
+                  loading="lazy"
+                  title="X SERIES Family"
+                ></iframe>
+                <div class="video-info">
+                  <h3>X SERIES Family</h3>
+                </div>
+              </div>
+              <div class="video-card animated-element">
+                <iframe 
+                  class="lazy" 
+                  data-src="https://drive.google.com/file/d/1hyzdX3APnIqxNM3DIf0HmiUuDRdadG5G/preview" 
+                  loading="lazy"
+                  title="M12 Speaker System"
+                ></iframe>
+                <div class="video-info">
+                  <h3>M12 Speaker System</h3>
+                </div>
+              </div>
+              <div class="video-card animated-element">
+                <iframe 
+                  class="lazy" 
+                  data-src="https://drive.google.com/file/d/19fF--tkIM1v1O5Bt_5Ckq4abBHqLUBbx/preview" 
+                  loading="lazy"
+                  title="Professional Microphones"
+                ></iframe>
+                <div class="video-info">
+                  <h3>Professional Microphones</h3>
+                </div>
+              </div>
+              <div class="video-card animated-element">
+                <iframe 
+                  class="lazy" 
+                  data-src="https://drive.google.com/file/d/19z6W0YRQ9Bjl8O7YLTh7lacj6ZXVDpOb/preview" 
+                  loading="lazy"
+                  title="Light & Laser Show"
+                ></iframe>
+                <div class="video-info">
+                  <h3>Light & Laser Show</h3>
+                </div>
+              </div>
+              <div class="video-card animated-element">
+                <iframe 
+                  class="lazy" 
+                  data-src="https://drive.google.com/file/d/11Uw2WRrYV2foPdPJictdYeTgtfyxZVHc/preview" 
+                  loading="lazy"
+                  title="VELA System"
+                ></iframe>
+                <div class="video-info">
+                  <h3>VELA System</h3>
+                </div>
+              </div>
+              
+              <!-- Event Showcase -->
+              <div class="video-card animated-element">
+                <iframe 
+                  class="lazy" 
+                  data-src="https://drive.google.com/file/d/1JI4hZIiDMnlwP56FxRWcAkcbxDLO5okK/preview" 
+                  loading="lazy"
+                  title="TRANS RESORT Event"
+                ></iframe>
+                <div class="video-info">
+                  <h3>TRANS RESORT Event</h3>
+                </div>
+              </div>
+              <div class="video-card animated-element">
+                <iframe 
+                  class="lazy" 
+                  data-src="https://drive.google.com/file/d/18jv1Y7Eqg69QrEPVQxGR7o_U-AnX9UZB/preview" 
+                  loading="lazy"
+                  title="Intercontinental Showcase"
+                ></iframe>
+                <div class="video-info">
+                  <h3>Intercontinental Showcase</h3>
+                </div>
+              </div>
+              <div class="video-card animated-element">
+                <iframe 
+                  class="lazy" 
+                  data-src="https://drive.google.com/file/d/19BFlF86t_BeQfJ5gMsqSE_UftZYJrhU0/preview" 
+                  loading="lazy"
+                  title="Spirit Festival"
+                ></iframe>
+                <div class="video-info">
+                  <h3>Spirit Festival</h3>
+                </div>
+              </div>
+              <div class="video-card animated-element">
+                <iframe 
+                  class="lazy" 
+                  data-src="https://drive.google.com/file/d/1Ar6THuJ3oiHw2UARwVfIolYmMi49HBcO/preview" 
+                  loading="lazy"
+                  title="Indo Padel Bali"
+                ></iframe>
+                <div class="video-info">
+                  <h3>Indo Padel Bali</h3>
+                </div>
+              </div>
+              <div class="video-card animated-element">
+                <iframe 
+                  class="lazy" 
+                  data-src="https://drive.google.com/file/d/1FQFeYVrrZa6F9jTy23eCfL3XtGApdHpL/preview" 
+                  loading="lazy"
+                  title="Tom Kenzler DJ Set"
+                ></iframe>
+                <div class="video-info">
+                  <h3>Tom Kenzler DJ Set</h3>
+                </div>
+              </div>
+              <div class="video-card animated-element">
+                <iframe 
+                  class="lazy" 
+                  data-src="https://drive.google.com/file/d/1EWEnTq3JAg8BU3dJFeBw52h06XR4IKAp/preview" 
+                  loading="lazy"
+                  title="Niyama Bali Event"
+                ></iframe>
+                <div class="video-info">
+                  <h3>Niyama Bali Event</h3>
+                </div>
+              </div>
             </div>
-            <div class="video-item animated-element">
-              <h3>X SERIES Family</h3>
-              <iframe 
-                class="lazy" 
-                data-src="https://drive.google.com/file/d/1ATBBPWADBb1B5JtqSZq05dyFhocWLRGD/preview" 
-                loading="lazy"
-                title="X SERIES Family"
-              ></iframe>
-            </div>
-            <div class="video-item animated-element">
-              <h3>M12 Speaker System</h3>
-              <iframe 
-                class="lazy" 
-                data-src="https://drive.google.com/file/d/1hyzdX3APnIqxNM3DIf0HmiUuDRdadG5G/preview" 
-                loading="lazy"
-                title="M12 Speaker System"
-              ></iframe>
-            </div>
-            <div class="video-item animated-element">
-              <h3>Professional Microphones</h3>
-              <iframe 
-                class="lazy" 
-                data-src="https://drive.google.com/file/d/19fF--tkIM1v1O5Bt_5Ckq4abBHqLUBbx/preview" 
-                loading="lazy"
-                title="Professional Microphones"
-              ></iframe>
-            </div>
-            <div class="video-item animated-element">
-              <h3>Light & Laser Show</h3>
-              <iframe 
-                class="lazy" 
-                data-src="https://drive.google.com/file/d/19z6W0YRQ9Bjl8O7YLTh7lacj6ZXVDpOb/preview" 
-                loading="lazy"
-                title="Light & Laser Show"
-              ></iframe>
-            </div>
-            <div class="video-item animated-element">
-              <h3>VELA System</h3>
-              <iframe 
-                class="lazy" 
-                data-src="https://drive.google.com/file/d/11Uw2WRrYV2foPdPJictdYeTgtfyxZVHc/preview" 
-                loading="lazy"
-                title="VELA System"
-              ></iframe>
-            </div>
-            
-            <!-- Event Showcase -->
-            <div class="video-item animated-element">
-              <h3>TRANS RESORT Event</h3>
-              <iframe 
-                class="lazy" 
-                data-src="https://drive.google.com/file/d/1JI4hZIiDMnlwP56FxRWcAkcbxDLO5okK/preview" 
-                loading="lazy"
-                title="TRANS RESORT Event"
-              ></iframe>
-            </div>
-            <div class="video-item animated-element">
-              <h3>Intercontinental Showcase</h3>
-              <iframe 
-                class="lazy" 
-                data-src="https://drive.google.com/file/d/18jv1Y7Eqg69QrEPVQxGR7o_U-AnX9UZB/preview" 
-                loading="lazy"
-                title="Intercontinental Showcase"
-              ></iframe>
-            </div>
-            <div class="video-item animated-element">
-              <h3>Spirit Festival</h3>
-              <iframe 
-                class="lazy" 
-                data-src="https://drive.google.com/file/d/19BFlF86t_BeQfJ5gMsqSE_UftZYJrhU0/preview" 
-                loading="lazy"
-                title="Spirit Festival"
-              ></iframe>
-            </div>
-            <div class="video-item animated-element">
-              <h3>Indo Padel Bali</h3>
-              <iframe 
-                class="lazy" 
-                data-src="https://drive.google.com/file/d/1Ar6THuJ3oiHw2UARwVfIolYmMi49HBcO/preview" 
-                loading="lazy"
-                title="Indo Padel Bali"
-              ></iframe>
-            </div>
-            <div class="video-item animated-element">
-              <h3>Tom Kenzler DJ Set</h3>
-              <iframe 
-                class="lazy" 
-                data-src="https://drive.google.com/file/d/1FQFeYVrrZa6F9jTy23eCfL3XtGApdHpL/preview" 
-                loading="lazy"
-                title="Tom Kenzler DJ Set"
-              ></iframe>
-            </div>
-            <div class="video-item animated-element">
-              <h3>Niyama Bali Event</h3>
-              <iframe 
-                class="lazy" 
-                data-src="https://drive.google.com/file/d/1EWEnTq3JAg8BU3dJFeBw52h06XR4IKAp/preview" 
-                loading="lazy"
-                title="Niyama Bali Event"
-              ></iframe>
+          </div>
+        </div>
+      </section>
+      
+      <style>
+        /* Add this to your existing CSS */
+        .lazy {
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
+        .lazy.loaded {
+          opacity: 1;
+        }
+      </style>
+      
+      <script>
+        // Add this to your existing JavaScript
+        document.addEventListener("DOMContentLoaded", function() {
+          const lazyLoad = (targets) => {
+            const io = new IntersectionObserver((entries, observer) => {
+              entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                  const target = entry.target;
+                  if (target.tagName === 'IFRAME') {
+                    target.src = target.dataset.src;
+                    target.classList.add('loaded');
+                    observer.unobserve(target);
+                  }
+                }
+              });
+            }, {
+              rootMargin: '100px',
+              threshold: 0.1
+            });
+      
+            targets.forEach(target => {
+              io.observe(target);
+            });
+          };
+      
+          const lazyVideos = document.querySelectorAll('.lazy');
+          lazyLoad(lazyVideos);
+        });
+      </script>
+              </div>
             </div>
           </div>
         </div>
